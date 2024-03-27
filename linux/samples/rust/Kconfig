@@ -163,4 +163,13 @@ config SAMPLE_RUST_SELFTESTS
 
 	  If unsure, say N.
 
+config SAMPLE_RUST_HELLOWORLD
+	tristate "Echo Hello World"
+	help
+	  This option builds the Rust echo module sample.
+
+	  If unsure, say N.
+
+
+
 endif # SAMPLES_RUST
