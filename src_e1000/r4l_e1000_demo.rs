@@ -293,6 +293,7 @@ impl kernel::irq::Handler for E1000InterruptHandler {
 /// the private data for the adapter
 struct E1000DrvPrvData {
     _netdev_reg: net::Registration<NetDevice>,
+    bars: i32,
 }
 
 impl driver::DeviceRemoval for E1000DrvPrvData {
@@ -457,17 +458,25 @@ impl pci::Driver for E1000Drv {
         )?)?;
 
         
-
         Ok(Box::try_new(
             E1000DrvPrvData{
                 // Must hold this registration, or the device will be removed.
                 _netdev_reg: netdev_reg,
+                bars: bars
             }
         )?)
     }
 
-    fn remove(data: &Self::Data) {
+    fn remove(dev: &mut pci::Device, data: &Self::Data) {
         pr_info!("Rust for linux e1000 driver demo (remove)\n");
+
+        // See https://www.kernel.org/doc/html/next/driver-api/pci/pci.html
+        // https://docs.kernel.org/translations/zh_CN/PCI/pci.html
+        // 禁用 PCI 设备
+        dev.disable_device();
+        // 释放选定的 PCI I/O 和内存资源
+        dev.release_region(data.bars);
+        drop(data);
     }
 }
 struct E1000KernelMod {
