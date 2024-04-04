@@ -473,9 +473,14 @@ impl pci::Driver for E1000Drv {
         // See https://www.kernel.org/doc/html/next/driver-api/pci/pci.html
         // https://docs.kernel.org/translations/zh_CN/PCI/pci.html
         // 禁用 PCI 设备
+        pr_info!("Disable device");
         dev.disable_device();
+        
+        pr_info!("Release selected regions");
         // 释放选定的 PCI I/O 和内存资源
-        dev.release_region(data.bars);
+        dev.release_selected_regions(data.bars);
+
+        pr_info!("Drop data");
         drop(data);
     }
 }

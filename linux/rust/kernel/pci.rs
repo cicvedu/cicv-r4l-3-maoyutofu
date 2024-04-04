@@ -302,8 +302,8 @@ impl Device {
     }
 
     /// Release region
-    pub fn release_region(&mut self, bar: i32) {
-        unsafe { bindings::pci_release_region(self.ptr, bar) };
+    pub fn release_selected_regions(&mut self, bars: i32) {
+        unsafe { bindings::pci_release_selected_regions(self.ptr, bars) };
     }
 
     /// iter PCI Resouces
