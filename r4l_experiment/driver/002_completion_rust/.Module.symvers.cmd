@@ -1,0 +1,1 @@
+cmd_/home/maoyutofu/work/cicv-r4l-3-maoyutofu/r4l_experiment/driver/002_completion_rust/Module.symvers :=  sed 's/ko$$/o/'  /home/maoyutofu/work/cicv-r4l-3-maoyutofu/r4l_experiment/driver/002_completion_rust/modules.order | scripts/mod/modpost      -o /home/maoyutofu/work/cicv-r4l-3-maoyutofu/r4l_experiment/driver/002_completion_rust/Module.symvers -e -i Module.symvers -T - 

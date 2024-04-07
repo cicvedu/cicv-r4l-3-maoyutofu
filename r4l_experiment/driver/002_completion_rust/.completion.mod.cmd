@@ -1,0 +1,1 @@
+cmd_/home/maoyutofu/work/cicv-r4l-3-maoyutofu/r4l_experiment/driver/002_completion_rust/completion.mod := printf '%s\n'   completion.o | awk '!x[$$0]++ { print("/home/maoyutofu/work/cicv-r4l-3-maoyutofu/r4l_experiment/driver/002_completion_rust/"$$0) }' > /home/maoyutofu/work/cicv-r4l-3-maoyutofu/r4l_experiment/driver/002_completion_rust/completion.mod
